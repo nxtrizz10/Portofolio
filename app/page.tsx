@@ -26,6 +26,21 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const projectData = [
+  {
+    title: "Pantau Magang",
+    description: "Platform monitoring kegiatan magang mahasiswa secara real-time untuk perusahaan LEMIGAS.",
+    image: "/pantaumagang.jpg", // Simpan gambar di folder public
+    tech: [<SiNextdotjs key="next" />, <SiTailwindcss key="tailwind" />, <SiTypescript key="ts" />],
+  },
+  {
+    title: "Cafetalish",
+    description: "Aplikasi manajemen kafe terintegrasi untuk pemesanan menu dan manajemen stok inventaris.",
+    image: "/cafetalish.jpg", // Simpan gambar di folder public
+    tech: [<SiNextdotjs key="next" />, <SiTailwindcss key="tailwind" />, <DiReact key="react" />],
+  },
+];
+
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white selection:bg-blue-500/30">
       {/* GLOW DECORATION */}
@@ -166,22 +181,30 @@ export default function Home() {
             Featured Projects
           </h2>
           <div className="grid md:grid-cols-2 gap-6">
-            {["Pantau Magang", "Cafetalish"].map((item) => (
+            {projectData.map((project) => (
               <Card
-                key={item}
-                className="bg-white/3 border-white/10 text-white overflow-hidden group hover:border-blue-500/50 transition-all"
+                key={project.title}
+                className="bg-white/3 border-white/10 text-white overflow-hidden group hover:border-blue-500/50 transition-all shadow-2xl"
               >
-                <CardHeader className="p-0">
-                  <div className="h-64 bg-linear-to-br from-gray-800 to-black group-hover:scale-105 transition-transform duration-500"></div>
+                <CardHeader className="p-0 overflow-hidden">
+                  {/* Container Gambar */}
+                  <div className="h-64 relative">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-center transition-transform duration-500 group-hover:scale-110"
+                    />
+                    {/* Overlay Gelap agar gambar tidak terlalu terang */}
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-500"></div>
+                  </div>
                 </CardHeader>
                 <CardContent className="p-6">
-                  <CardTitle className="mb-2">Project {item}</CardTitle>
-                  <CardDescription className="text-gray-400 mb-4">
-                    Membangun sistem desain skalabel dengan integrasi API pihak
-                    ketiga secara real-time.
+                  <CardTitle className="mb-2 text-xl">{project.title}</CardTitle>
+                  <CardDescription className="text-gray-400 mb-4 h-12 line-clamp-2">
+                    {project.description}
                   </CardDescription>
-                  <div className="flex gap-4 text-gray-500">
-                    <SiNextdotjs /> <SiTailwindcss /> <SiTypescript />
+                  <div className="flex gap-4 text-xl text-gray-500 group-hover:text-blue-400 transition-colors">
+                    {project.tech}
                   </div>
                 </CardContent>
               </Card>
