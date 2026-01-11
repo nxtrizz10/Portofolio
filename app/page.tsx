@@ -3,8 +3,13 @@
 import React from "react";
 import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
-import { DiReact, DiNodejsSmall, DiVisualstudio } from "react-icons/di";
-import { SiNextdotjs, SiTailwindcss, SiTypescript } from "react-icons/si";
+import { DiReact, DiNodejsSmall, DiVisualstudio, DiPhp } from "react-icons/di";
+import {
+  SiNextdotjs,
+  SiTailwindcss,
+  SiTypescript,
+  SiLaravel,
+} from "react-icons/si";
 import {
   Card,
   CardContent,
@@ -13,9 +18,11 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
   const [isScrolled, setIsScrolled] = React.useState(false);
+  const router = useRouter();
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -27,19 +34,29 @@ export default function Home() {
   }, []);
 
   const projectData = [
-  {
-    title: "Pantau Magang",
-    description: "Platform monitoring kegiatan magang mahasiswa secara real-time untuk perusahaan LEMIGAS.",
-    image: "/pantaumagang.jpg", // Simpan gambar di folder public
-    tech: [<SiNextdotjs key="next" />, <SiTailwindcss key="tailwind" />, <SiTypescript key="ts" />],
-  },
-  {
-    title: "Cafetalish",
-    description: "Aplikasi manajemen kafe terintegrasi untuk pemesanan menu dan manajemen stok inventaris.",
-    image: "/cafetalish.jpg", // Simpan gambar di folder public
-    tech: [<SiNextdotjs key="next" />, <SiTailwindcss key="tailwind" />, <DiReact key="react" />],
-  },
-];
+    {
+      title: "Pantau Magang",
+      description:
+        "Platform monitoring kegiatan magang mahasiswa secara real-time untuk perusahaan LEMIGAS.",
+      image: "/pantaumagang.jpg", // Simpan gambar di folder public
+      tech: [
+        <SiNextdotjs key="next" />,
+        <SiTailwindcss key="tailwind" />,
+        <SiTypescript key="ts" />,
+      ],
+    },
+    {
+      title: "Cafetalish",
+      description:
+        "Aplikasi manajemen kafe terintegrasi untuk pemesanan menu dan manajemen stok inventaris.",
+      image: "/cafetalish.jpg", // Simpan gambar di folder public
+      tech: [
+        <SiLaravel key="laravel" />,
+        <SiTailwindcss key="tailwind" />,
+        <DiPhp key="php" />,
+      ],
+    },
+  ];
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white selection:bg-blue-500/30">
@@ -49,26 +66,36 @@ export default function Home() {
 
       {/* NAVBAR */}
       <div className="fixed top-6 w-full flex justify-center z-50 px-6">
-        <nav 
+        <nav
           className={`flex items-center justify-between transition-all duration-500 ease-in-out px-6 rounded-full border border-white/10 backdrop-blur-xl shadow-2xl
-          ${isScrolled 
-            ? "w-full max-w-md h-12 bg-black/80 shadow-blue-500/10" 
-            : "w-full max-w-2xl h-14 bg-black/40"
+          ${
+            isScrolled
+              ? "w-full max-w-md h-12 bg-black/80 shadow-blue-500/10"
+              : "w-full max-w-2xl h-14 bg-black/40"
           }`}
         >
           {/* Bagian Kiri: Foto + Logo */}
           <div className="flex items-center gap-3">
-            <div className={`relative transition-all duration-500 shrink-0 ${isScrolled ? "w-7 h-7" : "w-9 h-9"}`}>
+            <div
+              className={`relative transition-all duration-500 shrink-0 ${
+                isScrolled ? "w-7 h-7" : "w-9 h-9"
+              }`}
+            >
               <img
-                src="/profile.jpg" 
+                src="/profile.jpg"
                 alt="Lando"
                 className="rounded-full object-cover w-full h-full border-2 border-white/20 shadow-md aspect-square"
               />
               {/* Status Online Dot */}
-              <div className={`absolute bottom-0 right-0 bg-green-500 border border-black rounded-full transition-all duration-500 ${isScrolled ? "w-2 h-2" : "w-2.5 h-2.5"}`}></div>
+              <div
+                className={`absolute bottom-0 right-0 bg-green-500 border border-black rounded-full transition-all duration-500 ${
+                  isScrolled ? "w-2 h-2" : "w-2.5 h-2.5"
+                }`}
+              ></div>
             </div>
-            
-            <span className={`font-bold tracking-tighter transition-all duration-500 font-mono
+
+            <span
+              className={`font-bold tracking-tighter transition-all duration-500 font-mono
               ${isScrolled ? "text-xs" : "text-sm"}
               bg-linear-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent`}
             >
@@ -83,18 +110,23 @@ export default function Home() {
                 key={item}
                 href={`#${item.toLowerCase()}`}
                 className={`uppercase tracking-widest font-medium text-gray-400 hover:text-white hover:bg-white/5 rounded-full transition-all duration-500
-                  ${isScrolled ? "px-2 py-1 text-[9px]" : "px-4 py-1.5 text-[11px]"}
+                  ${
+                    isScrolled
+                      ? "px-2 py-1 text-[9px]"
+                      : "px-4 py-1.5 text-[11px]"
+                  }
                 `}
               >
                 {item}
               </a>
             ))}
-            
+
             <div className="w-px h-3 bg-white/10 mx-2" />
 
-            <a 
+            <a
               href="mailto:rizcyorlando1003@gmail.com?subject=Tanya%20Tentang%20Project&body=Halo%20Lando!"
-              className={`uppercase tracking-widest font-bold text-blue-400 hover:text-blue-300 transition-all duration-500
+              className={`uppercase tracking-widest font-bold text-blue-400 hover:text-blue-300 
+                hover:tracking-[0.2em] transition-all duration-500
                 ${isScrolled ? "text-[9px]" : "text-[11px]"}
               `}
             >
@@ -105,7 +137,10 @@ export default function Home() {
       </div>
 
       {/* HERO SECTION */}
-      <section className="relative pt-40 pb-20 px-6">
+      <section
+        id="about"
+        className="relative pt-40 pb-20 px-6 animate-in fade-in slide-in-from-bottom-8 duration-1000 ease-out"
+      >
         <div className="max-w-6xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-xs mb-6">
             <span className="relative flex h-2 w-2">
@@ -125,24 +160,39 @@ export default function Home() {
             minimalis dan performa maksimal menggunakan React ecosystem.
           </p>
           <div className="flex justify-center gap-4">
-            <Button className="bg-white cursor-pointer text-black hover:bg-gray-200 rounded-full px-8">
+            <Button
+              onClick={() => router.push("/projectview")}
+              className="bg-white cursor-pointer text-black hover:bg-gray-200 rounded-full px-8"
+            >
               View Projects
             </Button>
             <div className="flex items-center gap-2 ml-4">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="rounded-full hover:bg-white/10"
+              <a
+                href="https://github.com/nxtrizz10"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <FaGithub size={20} />
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="rounded-full hover:bg-white/10"
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="rounded-full hover:bg-white cursor-pointer"
+                >
+                  <FaGithub size={20} />
+                </Button>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/gregorius-rizcy-9b1694310/"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <FaLinkedin size={20} />
-              </Button>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="rounded-full hover:bg-white cursor-pointer"
+                >
+                  <FaLinkedin size={20} />
+                </Button>
+              </a>
             </div>
           </div>
         </div>
@@ -152,7 +202,7 @@ export default function Home() {
       <section id="skills" className="py-20 border-y border-white/5 bg-white/2">
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex flex-wrap justify-center gap-8 md:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all">
-            <div className="flex flex-col items-center gap-2">
+            <div className="flex flex-col items-center gap-2 animate-float delay-1">
               <SiNextdotjs size={40} /> <span className="text-xs">Next.js</span>
             </div>
             <div className="flex flex-col items-center gap-2">
@@ -199,7 +249,9 @@ export default function Home() {
                   </div>
                 </CardHeader>
                 <CardContent className="p-6">
-                  <CardTitle className="mb-2 text-xl">{project.title}</CardTitle>
+                  <CardTitle className="mb-2 text-xl">
+                    {project.title}
+                  </CardTitle>
                   <CardDescription className="text-gray-400 mb-4 h-12 line-clamp-2">
                     {project.description}
                   </CardDescription>
@@ -214,26 +266,26 @@ export default function Home() {
       </section>
 
       {/* FOOTER */}
-      <footer className="py-20 border-t border-white/10 px-6">
+      <footer className="relative z-10 py-20 border-t border-white/10 px-6">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="text-gray-500 text-sm italic">
             © 2026 Lando. All rights reserved.
           </div>
           <div className="flex gap-6">
             <a
-              href="#"
+              href="https://github.com/nxtrizz10"
               className="text-gray-400 hover:text-white transition-colors"
             >
               <FaGithub size={22} />
             </a>
             <a
-              href="#"
+              href="mailto:rizcyorlando1003@gmail.com"
               className="text-gray-400 hover:text-white transition-colors"
             >
               <HiOutlineMail size={22} />
             </a>
             <a
-              href="#"
+              href="https://www.instagram.com/nxtrizz_10?igsh=MWp4bHlkaW5rc3p1eA=="
               className="text-gray-400 hover:text-white transition-colors"
             >
               <FaInstagram size={22} />
